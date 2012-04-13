@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20110208155312) do
     t.integer  "item_id",    :null => false
     t.string   "event",      :null => false
     t.string   "whodunnit"
+    t.string   "whodunnit_type"
     t.text     "object"
     t.datetime "created_at"
     t.string   "ip"
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20110208155312) do
     t.integer  "item_id",    :null => false
     t.string   "event",      :null => false
     t.string   "whodunnit"
+    t.string   "whodunnit_type"
     t.text     "object"
     t.datetime "created_at"
     t.integer  "answer"

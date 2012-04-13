@@ -47,12 +47,20 @@ module PaperTrail
     paper_trail_store[:whodunnit]
   end
 
+  def self.whodunnit_type
+    paper_trail_store[:whodunnit_type]
+  end
+
   # Sets who is responsible for any changes that occur.
   # You would normally use this in a migration or on the console,
   # when working with models directly.  In a controller it is set
   # automatically to the `current_user`.
   def self.whodunnit=(value)
     paper_trail_store[:whodunnit] = value
+  end
+
+  def self.whodunnit_type=(value)
+    paper_trail_store[:whodunnit_type] = value
   end
 
   # Returns any information from the controller that you want

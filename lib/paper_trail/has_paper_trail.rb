@@ -149,7 +149,7 @@ module PaperTrail
 
       def record_create
         if switched_on?
-          send(self.class.versions_association_name).create merge_metadata(:event => 'create', :whodunnit => PaperTrail.whodunnit)
+          send(self.class.versions_association_name).create merge_metadata(:event => 'create', :whodunnit => PaperTrail.whodunnit, :whodunnit_type => PaperTrail.whodunnit_type)
         end
       end
 
@@ -158,7 +158,8 @@ module PaperTrail
           data = {
             :event     => 'update',
             :object    => object_to_string(item_before_change),
-            :whodunnit => PaperTrail.whodunnit
+            :whodunnit => PaperTrail.whodunnit,
+            :whodunnit_type => PaperTrail.whodunnit_type
           }
           if version_class.column_names.include? 'object_changes'
             # The double negative (reject, !include?) preserves the hash structure of self.changes.
@@ -176,7 +177,8 @@ module PaperTrail
                                               :item_type => self.class.base_class.name,
                                               :event     => 'destroy',
                                               :object    => object_to_string(item_before_change),
-                                              :whodunnit => PaperTrail.whodunnit)
+                                              :whodunnit => PaperTrail.whodunnit,
+                                              :whodunnit_type => PaperTrail.whodunnit_type)
         end
         send(self.class.versions_association_name).send :load_target
       end
